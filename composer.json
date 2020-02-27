@@ -1,0 +1,24 @@
+{
+  "type": "library",
+  "name": "zongphp/library",
+  "license": "MIT",
+  "homepage": "http://www.zongphp.com",
+  "description": "ZongPHP Basic Development Library",
+  "require": {
+    "php": ">=5.4",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-iconv": "*",
+    "ext-openssl": "*",
+    "qiniu/php-sdk": "^7.2",
+    "aliyuncs/oss-sdk-php": "^2.3"
+  },
+  "autoload": {
+    "files": [
+      "src/common.php"
+    ],
+    "psr-4": {
+      "library\\": "src"
+    }
+  }
+}
