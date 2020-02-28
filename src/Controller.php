@@ -10,36 +10,19 @@ use library\logic\Form;
 use library\logic\Save;
 use library\logic\Delete;
 use library\logic\Input;
-use zongphp\controller\Controller as ZongController;
 use zongphp\exception\exception\HttpResponseException;
 use zongphp\request\Request;
 
-class Controller extends ZongController
+class Controller extends \stdClass
 {
-    private $debug = [];
-	public $request;
+    /**
+     * 当前请求对象
+     * @var \zongphp\Request
+     */
+    public $request;
 
     public function __construct()
     {
-        //设置错误级别
-        error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-        //定义常量
-        define('API_VERSION', 'v1.0');
-        define('APP_PATH', ROOT_PATH .DS . c('controller.app') .DS);
-        define('DATA_PATH', ROOT_PATH .DS.'storage'.DS);
-        define('CONFIG_PATH', ROOT_PATH .DS.'system'.DS.'config'.DS);
-
-        define('UPLOAD_NAME', c('upload.path'));
-        define('THEME_NAME', 'themes');
-        define('ROOT_URL', rtrim(dirname($_SERVER["SCRIPT_NAME"]), '\\/').'/');
-        define('PUBLIC_URL', ROOT_URL . 'resource/');
-        define('UPLOAD_URL', ROOT_URL . UPLOAD_NAME.'/');
-        define('THEME_PATH', ROOT_URL .THEME_NAME .'/');
-        define('__PUBLIC__', substr(PUBLIC_URL, 0, -1));
-        define('__UPLOAD__', substr(UPLOAD_URL, 0, -1));
-        define('ACTION_URL', preg_replace('/&.*/i', "", __URL__));//去除&之后所有参数的完整URL
-        define('BASE_URL', trim('/' . trim($_SERVER['REQUEST_URI'], '/\\'), '/'));//域名后的URL
-
         $this->request = new Request();
         $this->request->header('http_referer',$_SERVER['HTTP_REFERER']);
     }
